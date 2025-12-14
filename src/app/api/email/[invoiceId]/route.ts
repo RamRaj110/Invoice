@@ -59,10 +59,8 @@ import { InvoiceTemplate } from "../../../../components/template/SendInvoiceEmai
 //   }
 // }
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { invoiceId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ invoiceId: string }> }) {
+  const params = await props.params;
   try {
     const session = await auth();
 
